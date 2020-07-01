@@ -1,5 +1,7 @@
 $(document).ready(onReady);
 // when the document is ready, an ajax is being sent to the server and a 'GET' request is being performed asking for the artist array.
+let artists = [];
+
 function onReady() {
   $.ajax({
     type: 'GET',
@@ -10,8 +12,6 @@ function onReady() {
   }).then(function (response) {
     for (let i = 0; i < response.length; i++) {
       let artist = response[i];
-      console.log(artist);
-
       $('#artistTableBody').append(`
                 <tr>
                     <td>${artist.name}</td>
@@ -33,6 +33,21 @@ function onReady() {
                   <tr>
                       <td>${songs.title}</td>
                       <td>${songs.artist}</td>
+                  </tr>
+              `);
+    }
+  });
+
+  $.ajax({
+    type: 'GET',
+    url: '/albums',
+  }).then(function (response) {
+    for (let i = 0; i < response.length; i++) {
+      let albums = response[i];
+      $('#albumsTableBody').append(`
+                  <tr>
+                      <td>${albums.title}</td>
+                      <td>${albums.year}</td>
                   </tr>
               `);
     }

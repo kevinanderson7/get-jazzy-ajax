@@ -46,6 +46,7 @@ const PORT = 5000;
 // ];
 const displayArtists = require('./modules/artist.js');
 const displaySongs = require('./modules/song.js');
+const displayAlbum = require('./modules/albums.js');
 app.use(express.static('server/public'));
 
 app.get('/artist', (req, res) => {
@@ -54,6 +55,10 @@ app.get('/artist', (req, res) => {
 
 app.get('/songs', (req, res) => {
   res.send(displaySongs);
+});
+
+app.get('/albums', (req, res) => {
+  res.send(displayAlbum);
 });
 
 // TODO - Add GET for songs
